@@ -17,7 +17,9 @@ if (ongAtual) {
 function mudarPainel(nome) {
   ['postagens', 'nova', 'perfil'].forEach(n => {
     document.getElementById('painel-' + n).classList.toggle('painel-secao--ativa', n === nome);
-    document.getElementById('botao-painel-' + n).classList.toggle('painel-abas__botao--ativa', n === nome);
+    const botaoPainel = document.getElementById('botao-painel-' + n);
+    botaoPainel.classList.toggle('painel-abas__botao--ativa', n === nome);
+    if (n === nome) botaoPainel.setAttribute('aria-current', 'true'); else botaoPainel.removeAttribute('aria-current');
   });
   if (nome === 'perfil') preencherFormPerfil();
 }

@@ -29,8 +29,8 @@
 
   <main class="container" style="padding-top:32px;padding-bottom:64px">
 
-    <div class="painel-abas" role="tablist">
-      <button class="painel-abas__botao painel-abas__botao--ativa" id="botao-painel-postagens" onclick="mudarPainel('postagens')">Minhas postagens</button>
+    <div class="painel-abas" role="group" aria-label="Seções do painel">
+      <button class="painel-abas__botao painel-abas__botao--ativa" aria-current="true" id="botao-painel-postagens" onclick="mudarPainel('postagens')">Minhas postagens</button>
       <button class="painel-abas__botao" id="botao-painel-nova" onclick="mudarPainel('nova')">Nova postagem</button>
       <button class="painel-abas__botao" id="botao-painel-perfil" onclick="mudarPainel('perfil')">Perfil da ONG</button>
     </div>

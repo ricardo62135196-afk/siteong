@@ -29,8 +29,8 @@
 
   <main class="container" style="padding-top:32px;padding-bottom:64px">
 
-    <div class="painel-abas" role="tablist">
-      <button class="painel-abas__botao painel-abas__botao--ativa" id="botao-painel-disponiveis" onclick="mudarPainelUsuario('disponiveis')">Oportunidades disponíveis</button>
+    <div class="painel-abas" role="group" aria-label="Seções do painel">
+      <button class="painel-abas__botao painel-abas__botao--ativa" aria-current="true" id="botao-painel-disponiveis" onclick="mudarPainelUsuario('disponiveis')">Oportunidades disponíveis</button>
       <button class="painel-abas__botao" id="botao-painel-inscricoes" onclick="mudarPainelUsuario('inscricoes')">Minhas inscrições</button>
       <button class="painel-abas__botao" id="botao-painel-perfil" onclick="mudarPainelUsuario('perfil')">Perfil</button>
     </div>
