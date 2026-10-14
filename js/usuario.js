@@ -98,6 +98,14 @@ function renderDisponiveis() {
 document.getElementById('filtro-busca').addEventListener('input', renderDisponiveis);
 document.getElementById('filtro-categoria').addEventListener('change', renderDisponiveis);
 
+// Enter abre a lista de categorias (por padrão só Espaço ou Alt+↓ abrem o select)
+document.getElementById('filtro-categoria').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && typeof this.showPicker === 'function') {
+    e.preventDefault();
+    try { this.showPicker(); } catch (erro) { /* navegador sem suporte: mantém o padrão */ }
+  }
+});
+
 // ---------------- Minhas inscrições ----------------
 
 function renderInscricoes() {
