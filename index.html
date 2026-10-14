@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mutirão — Conecte ONGs e voluntários</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <nav class="nav">
+      <a href="index.html" class="marca"><span class="marca__pin"></span> Mutirão</a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="#como-funciona">Como funciona</a></li>
+        <li><a class="nav__link" href="#oportunidades">Oportunidades</a></li>
+        <li><a class="nav__link" href="login.html" data-nav="login.html">Entrar</a></li>
+        <li><a class="nav__link nav__link--destaque" href="cadastro.html" data-nav="cadastro.html">Cadastre-se</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero__grade">
+      <div>
+        <span class="rotulo hero__ola">Voluntariado local, sem burocracia</span>
+        <h1>Um mural onde ONGs publicam causas e voluntários encontram a sua.</h1>
+        <p class="hero__texto">Cadastre sua ONG e publique vagas para mutirões, oficinas e campanhas. Ou cadastre-se como voluntário e inscreva-se nas causas que combinam com você.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primario" href="cadastro.html">Quero ser voluntário</a>
+          <a class="btn btn--fantasma" style="border-color:#3f5d4d;color:#F4EFDF" href="cadastro.html">Sou uma ONG</a>
+        </div>
+        <div class="hero__stats">
+          <div>
+            <span class="hero__stat-numero" id="stat-ongs">–</span>
+            <span class="hero__stat-legenda">ONGs cadastradas</span>
+          </div>
+          <div>
+            <span class="hero__stat-numero" id="stat-postagens">–</span>
+            <span class="hero__stat-legenda">oportunidades ativas</span>
+          </div>
+          <div>
+            <span class="hero__stat-numero" id="stat-inscricoes">–</span>
+            <span class="hero__stat-legenda">inscrições feitas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural" aria-hidden="true">
+        <div class="mural__cartao mural__cartao--1">
+          <span class="rotulo">Meio Ambiente</span>
+          <strong>Mutirão de plantio no Parque das Águas</strong>
+          <span class="local">📍 Canoinhas/SC · 25 vagas</span>
+        </div>
+        <div class="mural__cartao mural__cartao--2">
+          <span class="rotulo">Educação</span>
+          <strong>Contação de histórias na biblioteca</strong>
+          <span class="local">📍 Vila Nova · 8 vagas</span>
+        </div>
+        <div class="mural__cartao mural__cartao--3">
+          <span class="rotulo">Bem-estar Animal</span>
+          <strong>Feira de adoção de cães e gatos</strong>
+          <span class="local">📍 Praça Central · 15 vagas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="como-funciona">
+    <div class="container">
+      <div class="secao__cabecalho">
+        <span class="rotulo">Como funciona</span>
+        <h2>Dois cadastros, um mesmo mural</h2>
+        <p>A plataforma tem dois tipos de conta. Cada uma vê o mural à sua maneira.</p>
+      </div>
+      <div class="como-funciona">
+        <div class="passo">
+          <span class="passo__rotulo">ONGS</span>
+          <h3>Publique a causa</h3>
+          <p>Cadastre sua ONG, descreva a oportunidade — data, local e número de vagas — e ela aparece no mural na hora.</p>
+        </div>
+        <div class="passo">
+          <span class="passo__rotulo">VOLUNTÁRIOS</span>
+          <h3>Encontre uma vaga</h3>
+          <p>Cadastre-se gratuitamente, filtre por categoria e inscreva-se nas oportunidades que combinam com sua agenda.</p>
+        </div>
+        <div class="passo">
+          <span class="passo__rotulo">AMBOS</span>
+          <h3>Acompanhe tudo</h3>
+          <p>ONGs veem quem se inscreveu em cada postagem. Voluntários acompanham suas inscrições em um só lugar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="oportunidades" style="padding-top:0">
+    <div class="container">
+      <div class="secao__cabecalho">
+        <span class="rotulo">No mural agora</span>
+        <h2>Oportunidades em destaque</h2>
+        <p>Veja algumas causas publicadas recentemente. Cadastre-se para se inscrever.</p>
+      </div>
+      <div class="grade-postagens" id="grade-destaque"></div>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <p><strong>Mutirão</strong> — conectando ONGs e voluntários. Projeto acadêmico, dados salvos apenas no seu navegador.</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    function iniciar() {
+      const ongs = DB.getOngs();
+      const postagens = DB.getPostagens();
+      const inscricoes = DB.getInscricoes();
+
+      document.getElementById('stat-ongs').textContent = ongs.length;
+      document.getElementById('stat-postagens').textContent = postagens.length;
+      document.getElementById('stat-inscricoes').textContent = inscricoes.length;
+
+      const destaque = [...postagens]
+        .sort((a, b) => new Date(a.data) - new Date(b.data))
+        .slice(0, 6);
+
+      const grade = document.getElementById('grade-destaque');
+
+      if (destaque.length === 0) {
+        grade.innerHTML = '<div class="estado-vazio"><strong>O mural está vazio</strong>Nenhuma ONG publicou uma oportunidade ainda.</div>';
+        return;
+      }
+
+      grade.innerHTML = destaque.map(p => {
+        const ong = DB.encontrarOngPorId(p.ongId);
+        const ocupadas = DB.vagasOcupadas(p.id);
+        const cheias = ocupadas >= p.vagas;
+        return `
+          <article class="cartao-postagem">
+            ${imagemPostagemHTML(p)}
+            <div class="cartao-postagem__topo">
+              <span class="badge">${escapeHTML(p.categoria)}</span>
+              ${cheias ? '<span class="badge badge--coral">Lotado</span>' : ''}
+            </div>
+            <h3>${escapeHTML(p.titulo)}</h3>
+            <p class="cartao-postagem__ong">${ong ? escapeHTML(ong.nome) : 'ONG'}</p>
+            <p class="cartao-postagem__desc">${escapeHTML(p.descricao)}</p>
+            <div class="cartao-postagem__meta">
+              <span>📍 ${escapeHTML(p.local)}</span>
+              <span>📅 ${formatarData(p.data)}</span>
+              <span>${ocupadas}/${p.vagas} vagas</span>
+            </div>
+            <div class="cartao-postagem__acoes">
+              <a href="cadastro.html" class="btn btn--verde btn--pequeno btn--bloco">Cadastre-se para participar</a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+    document.addEventListener('DOMContentLoaded', iniciar);
+  </script>
+</body>
+</html>

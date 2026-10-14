@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastre-se — Mutirão</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <nav class="nav">
+      <a href="index.html" class="marca"><span class="marca__pin"></span> Mutirão</a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="login.html" data-nav="login.html">Entrar</a></li>
+        <li><a class="nav__link nav__link--destaque" href="cadastro.html" data-nav="cadastro.html">Cadastre-se</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="pagina-auth">
+    <div class="pagina-auth__grade">
+      <div class="pagina-auth__cabecalho">
+        <span class="rotulo">Criar conta</span>
+        <h1 style="font-size:1.9rem">Junte-se ao mural</h1>
+        <p>Escolha o tipo de conta para começar.</p>
+      </div>
+
+      <div class="abas" role="tablist">
+        <button class="abas__botao abas__botao--ativa" id="botao-aba-voluntario" role="tab" aria-selected="true" onclick="mudarAba('voluntario')">Sou voluntário</button>
+        <button class="abas__botao" id="botao-aba-ong" role="tab" aria-selected="false" onclick="mudarAba('ong')">Sou uma ONG</button>
+      </div>
+
+      <div class="cartao-form">
+
+        <!-- Cadastro de voluntário -->
+        <div class="aba-conteudo aba-conteudo--ativa" id="conteudo-aba-voluntario">
+          <form id="form-cadastro-voluntario" novalidate>
+            <div class="campo" id="campo-v-nome">
+              <label for="v-nome">Nome completo</label>
+              <input type="text" id="v-nome" name="nome" autocomplete="name" placeholder="Ex: Ana Souza" />
+              <span class="campo__erro">Informe seu nome completo.</span>
+            </div>
+            <div class="campo" id="campo-v-email">
+              <label for="v-email">E-mail</label>
+              <input type="email" id="v-email" name="email" autocomplete="email" placeholder="voce@email.com" />
+              <span class="campo__erro">Informe um e-mail válido.</span>
+            </div>
+            <div class="campo" id="campo-v-telefone">
+              <label for="v-telefone">Telefone / WhatsApp</label>
+              <input type="tel" id="v-telefone" name="telefone" autocomplete="tel" placeholder="(49) 90000-0000" />
+              <span class="campo__erro">Informe um telefone de contato.</span>
+            </div>
+            <div class="campo-linha">
+              <div class="campo" id="campo-v-senha">
+                <label for="v-senha">Senha</label>
+                <input type="password" id="v-senha" name="senha" autocomplete="new-password" placeholder="Mínimo 6 caracteres" />
+                <span class="campo__erro">A senha precisa ter no mínimo 6 caracteres.</span>
+              </div>
+              <div class="campo" id="campo-v-senha2">
+                <label for="v-senha2">Confirmar senha</label>
+                <input type="password" id="v-senha2" name="senha2" autocomplete="new-password" placeholder="Repita a senha" />
+                <span class="campo__erro">As senhas não coincidem.</span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--verde btn--bloco">Criar conta de voluntário</button>
+            <p class="form__link-alt" style="text-align:center;margin-top:16px">Já tem conta? <a href="login.html">Entrar</a></p>
+          </form>
+        </div>
+
+        <!-- Cadastro de ONG -->
+        <div class="aba-conteudo" id="conteudo-aba-ong">
+          <form id="form-cadastro-ong" novalidate>
+            <div class="campo" id="campo-o-nome">
+              <label for="o-nome">Nome da ONG</label>
+              <input type="text" id="o-nome" name="nome" placeholder="Ex: Mãos que Plantam" />
+              <span class="campo__erro">Informe o nome da ONG.</span>
+            </div>
+            <div class="campo" id="campo-o-email">
+              <label for="o-email">E-mail institucional</label>
+              <input type="email" id="o-email" name="email" placeholder="contato@ong.org.br" />
+              <span class="campo__erro">Informe um e-mail válido.</span>
+            </div>
+            <div class="campo-linha">
+              <div class="campo" id="campo-o-cnpj">
+                <label for="o-cnpj">CNPJ</label>
+                <input type="text" id="o-cnpj" name="cnpj" placeholder="00.000.000/0001-00" />
+                <span class="campo__erro">Informe um CNPJ com 14 dígitos.</span>
+              </div>
+              <div class="campo" id="campo-o-area">
+                <label for="o-area">Área de atuação</label>
+                <select id="o-area" name="area">
+                  <option value="">Selecione</option>
+                  <option>Meio Ambiente</option>
+                  <option>Educação</option>
+                  <option>Saúde</option>
+                  <option>Bem-estar Animal</option>
+                  <option>Assistência Social</option>
+                  <option>Cultura</option>
+                  <option>Outra</option>
+                </select>
+                <span class="campo__erro">Selecione uma área.</span>
+              </div>
+            </div>
+            <div class="campo" id="campo-o-descricao">
+              <label for="o-descricao">Descrição da ONG</label>
+              <textarea id="o-descricao" name="descricao" placeholder="Conte em poucas linhas o que a ONG faz."></textarea>
+              <span class="campo__erro">Escreva uma breve descrição.</span>
+            </div>
+            <div class="campo-linha">
+              <div class="campo" id="campo-o-senha">
+                <label for="o-senha">Senha</label>
+                <input type="password" id="o-senha" name="senha" placeholder="Mínimo 6 caracteres" />
+                <span class="campo__erro">A senha precisa ter no mínimo 6 caracteres.</span>
+              </div>
+              <div class="campo" id="campo-o-senha2">
+                <label for="o-senha2">Confirmar senha</label>
+                <input type="password" id="o-senha2" name="senha2" placeholder="Repita a senha" />
+                <span class="campo__erro">As senhas não coincidem.</span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primario btn--bloco">Cadastrar ONG</button>
+            <p class="form__link-alt" style="text-align:center;margin-top:16px">Já tem conta? <a href="login.html">Entrar</a></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/cadastro.js"></script>
+</body>
+</html>

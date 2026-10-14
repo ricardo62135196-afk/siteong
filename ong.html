@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel da ONG — Mutirão</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <nav class="nav">
+      <a href="index.html" class="marca"><span class="marca__pin"></span> Mutirão</a>
+      <div class="nav__usuario">
+        <span class="nav__nome" id="nav-nome-ong"></span>
+        <button class="btn btn--fantasma btn--pequeno" style="border-color:#3f5d4d;color:#F4EFDF" onclick="sair()">Sair</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="painel-cabecalho">
+    <div class="container">
+      <span class="rotulo">Painel da ONG</span>
+      <h1 id="titulo-ong">—</h1>
+      <p id="area-ong">—</p>
+    </div>
+  </section>
+
+  <main class="container" style="padding-top:32px;padding-bottom:64px">
+
+    <div class="painel-abas" role="tablist">
+      <button class="painel-abas__botao painel-abas__botao--ativa" id="botao-painel-postagens" onclick="mudarPainel('postagens')">Minhas postagens</button>
+      <button class="painel-abas__botao" id="botao-painel-nova" onclick="mudarPainel('nova')">Nova postagem</button>
+      <button class="painel-abas__botao" id="botao-painel-perfil" onclick="mudarPainel('perfil')">Perfil da ONG</button>
+    </div>
+
+    <!-- Minhas postagens -->
+    <section class="painel-secao painel-secao--ativa" id="painel-postagens">
+      <div class="painel-linha-topo">
+        <div>
+          <h2 style="margin-bottom:2px">Minhas postagens</h2>
+          <p style="color:var(--tinta-suave);margin:0">Oportunidades publicadas pela sua ONG.</p>
+        </div>
+        <button class="btn btn--primario" onclick="abrirNovaPostagem()">+ Nova postagem</button>
+      </div>
+      <div class="grade-postagens" id="grade-minhas-postagens"></div>
+    </section>
+
+    <!-- Nova postagem / edição -->
+    <section class="painel-secao" id="painel-nova">
+      <h2 id="titulo-form-postagem">Nova postagem</h2>
+      <p style="color:var(--tinta-suave);margin-top:-8px">Preencha os dados da oportunidade que sua ONG está oferecendo.</p>
+      <div class="cartao-form" style="max-width:640px">
+        <form id="form-postagem" novalidate>
+          <input type="hidden" id="p-id" />
+          <div class="campo" id="campo-p-titulo">
+            <label for="p-titulo">Título da oportunidade</label>
+            <input type="text" id="p-titulo" placeholder="Ex: Mutirão de plantio no Parque das Águas" />
+            <span class="campo__erro">Informe um título.</span>
+          </div>
+          <div class="campo-linha">
+            <div class="campo" id="campo-p-categoria">
+              <label for="p-categoria">Categoria</label>
+              <select id="p-categoria">
+                <option value="">Selecione</option>
+                <option>Meio Ambiente</option>
+                <option>Educação</option>
+                <option>Saúde</option>
+                <option>Bem-estar Animal</option>
+                <option>Assistência Social</option>
+                <option>Cultura</option>
+                <option>Outra</option>
+              </select>
+              <span class="campo__erro">Selecione uma categoria.</span>
+            </div>
+            <div class="campo" id="campo-p-vagas">
+              <label for="p-vagas">Número de vagas</label>
+              <input type="number" id="p-vagas" min="1" placeholder="Ex: 20" />
+              <span class="campo__erro">Informe um número de vagas válido.</span>
+            </div>
+          </div>
+          <div class="campo" id="campo-p-descricao">
+            <label for="p-descricao">Descrição</label>
+            <textarea id="p-descricao" placeholder="O que os voluntários vão fazer? O que devem levar?"></textarea>
+            <span class="campo__erro">Escreva uma descrição.</span>
+          </div>
+          <div class="campo-linha">
+            <div class="campo" id="campo-p-local">
+              <label for="p-local">Local</label>
+              <input type="text" id="p-local" placeholder="Ex: Parque das Águas, Canoinhas/SC" />
+              <span class="campo__erro">Informe o local.</span>
+            </div>
+            <div class="campo" id="campo-p-data">
+              <label for="p-data">Data</label>
+              <input type="date" id="p-data" />
+              <span class="campo__erro">Escolha uma data futura.</span>
+            </div>
+          </div>
+          <div class="campo" id="campo-p-imagem">
+            <label for="p-imagem">Imagem da postagem <span style="font-weight:400;color:var(--tinta-suave)">(opcional)</span></label>
+            <input type="file" id="p-imagem" accept="image/*" />
+            <div class="previa-imagem" id="previa-imagem" hidden>
+              <img id="previa-imagem-img" alt="Pré-visualização da imagem" />
+              <button type="button" class="btn btn--fantasma btn--pequeno" onclick="removerImagemPostagem()">Remover imagem</button>
+            </div>
+          </div>
+          <div class="form__rodape">
+            <button type="button" class="btn btn--fantasma" onclick="cancelarEdicaoPostagem()">Cancelar</button>
+            <button type="submit" class="btn btn--primario" id="botao-salvar-postagem">Publicar postagem</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Perfil -->
+    <section class="painel-secao" id="painel-perfil">
+      <h2>Perfil da ONG</h2>
+      <p style="color:var(--tinta-suave);margin-top:-8px">Essas informações aparecem para os voluntários.</p>
+      <div class="cartao-form" style="max-width:640px">
+        <form id="form-perfil-ong" novalidate>
+          <div class="campo" id="campo-pf-nome">
+            <label for="pf-nome">Nome da ONG</label>
+            <input type="text" id="pf-nome" />
+            <span class="campo__erro">Informe o nome da ONG.</span>
+          </div>
+          <div class="campo-linha">
+            <div class="campo">
+              <label for="pf-email">E-mail (login)</label>
+              <input type="email" id="pf-email" disabled />
+            </div>
+            <div class="campo">
+              <label for="pf-cnpj">CNPJ</label>
+              <input type="text" id="pf-cnpj" disabled />
+            </div>
+          </div>
+          <div class="campo" id="campo-pf-area">
+            <label for="pf-area">Área de atuação</label>
+            <select id="pf-area">
+              <option>Meio Ambiente</option>
+              <option>Educação</option>
+              <option>Saúde</option>
+              <option>Bem-estar Animal</option>
+              <option>Assistência Social</option>
+              <option>Cultura</option>
+              <option>Outra</option>
+            </select>
+          </div>
+          <div class="campo" id="campo-pf-descricao">
+            <label for="pf-descricao">Descrição</label>
+            <textarea id="pf-descricao"></textarea>
+            <span class="campo__erro">Escreva uma breve descrição.</span>
+          </div>
+          <div class="form__rodape">
+            <span></span>
+            <button type="submit" class="btn btn--primario">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: inscritos -->
+  <div class="modal-fundo" id="modal-inscritos">
+    <div class="modal">
+      <div class="modal__cabecalho">
+        <div>
+          <span class="rotulo">Inscritos</span>
+          <h3 id="modal-inscritos-titulo" style="margin:0">—</h3>
+        </div>
+        <button class="modal__fechar" onclick="fecharModalInscritos()" aria-label="Fechar">×</button>
+      </div>
+      <ul class="lista-inscritos" id="modal-inscritos-lista" style="margin-top:18px"></ul>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/ong.js"></script>
+</body>
+</html>

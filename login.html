@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar — Mutirão</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <nav class="nav">
+      <a href="index.html" class="marca"><span class="marca__pin"></span> Mutirão</a>
+      <ul class="nav__links">
+        <li><a class="nav__link nav__link--ativo" href="login.html" data-nav="login.html">Entrar</a></li>
+        <li><a class="nav__link nav__link--destaque" href="cadastro.html" data-nav="cadastro.html">Cadastre-se</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="pagina-auth">
+    <div class="pagina-auth__grade">
+      <div class="pagina-auth__cabecalho">
+        <span class="rotulo">Bem-vindo de volta</span>
+        <h1 style="font-size:1.9rem">Entrar no mural</h1>
+        <p>Escolha o tipo de conta para entrar.</p>
+      </div>
+
+      <div class="abas" role="tablist">
+        <button class="abas__botao abas__botao--ativa" id="botao-aba-voluntario" role="tab" aria-selected="true" onclick="mudarAbaLogin('voluntario')">Sou voluntário</button>
+        <button class="abas__botao" id="botao-aba-ong" role="tab" aria-selected="false" onclick="mudarAbaLogin('ong')">Sou uma ONG</button>
+      </div>
+
+      <div class="cartao-form">
+
+        <div class="aba-conteudo aba-conteudo--ativa" id="conteudo-aba-voluntario">
+          <form id="form-login-voluntario" novalidate>
+            <div class="campo" id="campo-lv-email">
+              <label for="lv-email">E-mail</label>
+              <input type="email" id="lv-email" autocomplete="email" placeholder="voce@email.com" />
+              <span class="campo__erro">Informe seu e-mail.</span>
+            </div>
+            <div class="campo" id="campo-lv-senha">
+              <label for="lv-senha">Senha</label>
+              <input type="password" id="lv-senha" autocomplete="current-password" placeholder="Sua senha" />
+              <span class="campo__erro">Informe sua senha.</span>
+            </div>
+            <button type="submit" class="btn btn--verde btn--bloco">Entrar como voluntário</button>
+            <p class="form__link-alt" style="text-align:center;margin-top:16px">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+          </form>
+        </div>
+
+        <div class="aba-conteudo" id="conteudo-aba-ong">
+          <form id="form-login-ong" novalidate>
+            <div class="campo" id="campo-lo-email">
+              <label for="lo-email">E-mail institucional</label>
+              <input type="email" id="lo-email" autocomplete="email" placeholder="contato@ong.org.br" />
+              <span class="campo__erro">Informe o e-mail da ONG.</span>
+            </div>
+            <div class="campo" id="campo-lo-senha">
+              <label for="lo-senha">Senha</label>
+              <input type="password" id="lo-senha" autocomplete="current-password" placeholder="Sua senha" />
+              <span class="campo__erro">Informe a senha.</span>
+            </div>
+            <button type="submit" class="btn btn--primario btn--bloco">Entrar como ONG</button>
+            <p class="form__link-alt" style="text-align:center;margin-top:16px">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+          </form>
+        </div>
+
+        <p class="campo__dica" style="text-align:center;margin-top:18px">Quer testar rápido? Use uma das ONGs de exemplo: <strong>contato@maosqueplantam.org.br</strong> / senha <strong>123456</strong></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do voluntário — Mutirão</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <nav class="nav">
+      <a href="index.html" class="marca"><span class="marca__pin"></span> Mutirão</a>
+      <div class="nav__usuario">
+        <span class="nav__nome" id="nav-nome-usuario"></span>
+        <button class="btn btn--fantasma btn--pequeno" style="border-color:#3f5d4d;color:#F4EFDF" onclick="sair()">Sair</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="painel-cabecalho">
+    <div class="container">
+      <span class="rotulo">Painel do voluntário</span>
+      <h1 id="titulo-usuario">—</h1>
+      <p>Encontre uma causa e inscreva-se em poucos cliques.</p>
+    </div>
+  </section>
+
+  <main class="container" style="padding-top:32px;padding-bottom:64px">
+
+    <div class="painel-abas" role="tablist">
+      <button class="painel-abas__botao painel-abas__botao--ativa" id="botao-painel-disponiveis" onclick="mudarPainelUsuario('disponiveis')">Oportunidades disponíveis</button>
+      <button class="painel-abas__botao" id="botao-painel-inscricoes" onclick="mudarPainelUsuario('inscricoes')">Minhas inscrições</button>
+      <button class="painel-abas__botao" id="botao-painel-perfil" onclick="mudarPainelUsuario('perfil')">Perfil</button>
+    </div>
+
+    <!-- Oportunidades disponíveis -->
+    <section class="painel-secao painel-secao--ativa" id="painel-disponiveis">
+      <div class="filtros">
+        <input type="text" id="filtro-busca" placeholder="Buscar por título ou local..." />
+        <select id="filtro-categoria">
+          <option value="">Todas as categorias</option>
+          <option>Meio Ambiente</option>
+          <option>Educação</option>
+          <option>Saúde</option>
+          <option>Bem-estar Animal</option>
+          <option>Assistência Social</option>
+          <option>Cultura</option>
+          <option>Outra</option>
+        </select>
+      </div>
+      <div class="grade-postagens" id="grade-disponiveis"></div>
+    </section>
+
+    <!-- Minhas inscrições -->
+    <section class="painel-secao" id="painel-inscricoes">
+      <h2>Minhas inscrições</h2>
+      <p style="color:var(--tinta-suave);margin-top:-8px">Oportunidades em que você já está inscrito(a).</p>
+      <div class="grade-postagens" id="grade-inscricoes"></div>
+    </section>
+
+    <!-- Perfil -->
+    <section class="painel-secao" id="painel-perfil">
+      <h2>Meu perfil</h2>
+      <div class="cartao-form" style="max-width:560px">
+        <form id="form-perfil-usuario" novalidate>
+          <div class="campo" id="campo-pu-nome">
+            <label for="pu-nome">Nome completo</label>
+            <input type="text" id="pu-nome" />
+            <span class="campo__erro">Informe seu nome completo.</span>
+          </div>
+          <div class="campo">
+            <label for="pu-email">E-mail (login)</label>
+            <input type="email" id="pu-email" disabled />
+          </div>
+          <div class="campo" id="campo-pu-telefone">
+            <label for="pu-telefone">Telefone / WhatsApp</label>
+            <input type="tel" id="pu-telefone" />
+            <span class="campo__erro">Informe um telefone válido.</span>
+          </div>
+          <div class="form__rodape">
+            <span></span>
+            <button type="submit" class="btn btn--primario">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/usuario.js"></script>
+</body>
+</html>
