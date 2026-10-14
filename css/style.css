@@ -531,7 +531,6 @@ input:focus, select:focus, textarea:focus {
 }
 
 .form__link-alt { font-size: 0.9rem; color: var(--tinta-suave); }
-.form__link-alt a { text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
 
 /* Abas de escolha (ONG / Voluntário) */
 .abas {
