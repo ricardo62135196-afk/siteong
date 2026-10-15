@@ -78,7 +78,8 @@ let imagemAtual = '';
 
 function definirPrevia(src) {
   const caixa = document.getElementById('previa-imagem');
-  document.getElementById('previa-imagem-img').src = src || '';
+  const img = document.getElementById('previa-imagem-img');
+  img.src = src || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='; // GIF transparente mantém o atributo src válido quando não há imagem
   caixa.hidden = !src;
 }
 
