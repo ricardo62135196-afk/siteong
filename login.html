@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entrar — Mutirão</title>
-  <meta name="description" content="Entre no Mutirão como voluntário ou como ONG e acompanhe suas oportunidades de voluntariado." />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="description" content="Entre no Mutirão como voluntário ou como ONG e acompanhe suas oportunidades de voluntariado.">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -28,22 +28,22 @@
       </div>
 
       <div class="abas" role="tablist">
-        <button class="abas__botao abas__botao--ativa" id="botao-aba-voluntario" role="tab" aria-selected="true" onclick="mudarAbaLogin('voluntario')">Sou voluntário</button>
-        <button class="abas__botao" id="botao-aba-ong" role="tab" aria-selected="false" onclick="mudarAbaLogin('ong')">Sou uma ONG</button>
+        <button class="abas__botao abas__botao--ativa" id="botao-aba-voluntario" role="tab" aria-controls="conteudo-aba-voluntario" aria-selected="true" onclick="mudarAbaLogin('voluntario')">Sou voluntário</button>
+        <button class="abas__botao" id="botao-aba-ong" role="tab" aria-controls="conteudo-aba-ong" aria-selected="false" onclick="mudarAbaLogin('ong')">Sou uma ONG</button>
       </div>
 
       <div class="cartao-form">
 
-        <div class="aba-conteudo aba-conteudo--ativa" id="conteudo-aba-voluntario">
+        <div class="aba-conteudo aba-conteudo--ativa" id="conteudo-aba-voluntario" role="tabpanel" aria-labelledby="botao-aba-voluntario">
           <form id="form-login-voluntario" novalidate>
             <div class="campo" id="campo-lv-email">
               <label for="lv-email">E-mail</label>
-              <input type="email" id="lv-email" autocomplete="email" placeholder="voce@email.com" />
+              <input type="email" id="lv-email" autocomplete="email" placeholder="voce@email.com">
               <span class="campo__erro">Informe seu e-mail.</span>
             </div>
             <div class="campo" id="campo-lv-senha">
               <label for="lv-senha">Senha</label>
-              <input type="password" id="lv-senha" autocomplete="current-password" placeholder="Sua senha" />
+              <input type="password" id="lv-senha" autocomplete="current-password" placeholder="Sua senha">
               <span class="campo__erro">Informe sua senha.</span>
             </div>
             <button type="submit" class="btn btn--verde btn--bloco">Entrar como voluntário</button>
@@ -51,16 +51,16 @@
           </form>
         </div>
 
-        <div class="aba-conteudo" id="conteudo-aba-ong">
+        <div class="aba-conteudo" id="conteudo-aba-ong" role="tabpanel" aria-labelledby="botao-aba-ong">
           <form id="form-login-ong" novalidate>
             <div class="campo" id="campo-lo-email">
               <label for="lo-email">E-mail institucional</label>
-              <input type="email" id="lo-email" autocomplete="email" placeholder="contato@ong.org.br" />
+              <input type="email" id="lo-email" autocomplete="email" placeholder="contato@ong.org.br">
               <span class="campo__erro">Informe o e-mail da ONG.</span>
             </div>
             <div class="campo" id="campo-lo-senha">
               <label for="lo-senha">Senha</label>
-              <input type="password" id="lo-senha" autocomplete="current-password" placeholder="Sua senha" />
+              <input type="password" id="lo-senha" autocomplete="current-password" placeholder="Sua senha">
               <span class="campo__erro">Informe a senha.</span>
             </div>
             <button type="submit" class="btn btn--primario btn--bloco">Entrar como ONG</button>

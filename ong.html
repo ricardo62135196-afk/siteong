@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel da ONG — Mutirão</title>
-  <meta name="description" content="Painel da ONG no Mutirão: publique e gerencie oportunidades de voluntariado." />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="description" content="Painel da ONG no Mutirão: publique e gerencie oportunidades de voluntariado.">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -53,10 +53,10 @@
       <p style="color:var(--tinta-suave);margin-top:-8px">Preencha os dados da oportunidade que sua ONG está oferecendo.</p>
       <div class="cartao-form" style="max-width:640px">
         <form id="form-postagem" novalidate>
-          <input type="hidden" id="p-id" />
+          <input type="hidden" id="p-id">
           <div class="campo" id="campo-p-titulo">
             <label for="p-titulo">Título da oportunidade</label>
-            <input type="text" id="p-titulo" placeholder="Ex: Mutirão de plantio no Parque das Águas" />
+            <input type="text" id="p-titulo" placeholder="Ex: Mutirão de plantio no Parque das Águas">
             <span class="campo__erro">Informe um título.</span>
           </div>
           <div class="campo-linha">
@@ -76,7 +76,7 @@
             </div>
             <div class="campo" id="campo-p-vagas">
               <label for="p-vagas">Número de vagas</label>
-              <input type="number" id="p-vagas" min="1" placeholder="Ex: 20" />
+              <input type="number" id="p-vagas" min="1" placeholder="Ex: 20">
               <span class="campo__erro">Informe um número de vagas válido.</span>
             </div>
           </div>
@@ -88,20 +88,20 @@
           <div class="campo-linha">
             <div class="campo" id="campo-p-local">
               <label for="p-local">Local</label>
-              <input type="text" id="p-local" placeholder="Ex: Parque das Águas, Canoinhas/SC" />
+              <input type="text" id="p-local" placeholder="Ex: Parque das Águas, Canoinhas/SC">
               <span class="campo__erro">Informe o local.</span>
             </div>
             <div class="campo" id="campo-p-data">
               <label for="p-data">Data</label>
-              <input type="date" id="p-data" />
+              <input type="date" id="p-data">
               <span class="campo__erro">Escolha uma data futura.</span>
             </div>
           </div>
           <div class="campo" id="campo-p-imagem">
             <label for="p-imagem">Imagem da postagem <span style="font-weight:400;color:var(--tinta-suave)">(opcional)</span></label>
-            <input type="file" id="p-imagem" accept="image/*" />
+            <input type="file" id="p-imagem" accept="image/*">
             <div class="previa-imagem" id="previa-imagem" hidden>
-              <img id="previa-imagem-img" alt="Pré-visualização da imagem" />
+              <img id="previa-imagem-img" alt="Pré-visualização da imagem">
               <button type="button" class="btn btn--fantasma btn--pequeno" onclick="removerImagemPostagem()">Remover imagem</button>
             </div>
           </div>
@@ -121,17 +121,17 @@
         <form id="form-perfil-ong" novalidate>
           <div class="campo" id="campo-pf-nome">
             <label for="pf-nome">Nome da ONG</label>
-            <input type="text" id="pf-nome" />
+            <input type="text" id="pf-nome">
             <span class="campo__erro">Informe o nome da ONG.</span>
           </div>
           <div class="campo-linha">
             <div class="campo">
               <label for="pf-email">E-mail (login)</label>
-              <input type="email" id="pf-email" disabled />
+              <input type="email" id="pf-email" disabled>
             </div>
             <div class="campo">
               <label for="pf-cnpj">CNPJ</label>
-              <input type="text" id="pf-cnpj" disabled />
+              <input type="text" id="pf-cnpj" disabled>
             </div>
           </div>
           <div class="campo" id="campo-pf-area">
